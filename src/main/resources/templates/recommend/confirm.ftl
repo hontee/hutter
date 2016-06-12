@@ -26,6 +26,7 @@
 </div>
 
 <form class="ui form" action="/recommend/submit" method="get">
+  <input type="hidden" name="token" value="${token!}" />
   <div class="field">
     <label>链接</label>
     <input type="url" name="url" value="${webInfo.url!}" readonly>

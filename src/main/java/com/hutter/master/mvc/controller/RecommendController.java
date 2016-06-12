@@ -18,6 +18,7 @@ import com.hutter.master.base.fetch.WebInfo;
 import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.ProductForm;
+import com.hutter.master.mvc.annotation.Token;
 import com.hutter.master.service.ProductService;
 
 @Controller
@@ -50,6 +51,7 @@ public class RecommendController extends BaseController {
 	 * 确认产品信息
 	 * @return
 	 */
+	@Token(add = true)
 	@RequestMapping(value = "confirm", method=RequestMethod.GET)
 	public String confirm(@RequestParam String url, Model model) {
 		setTitle(policy.getRecommendConfirm(), model);
@@ -70,6 +72,7 @@ public class RecommendController extends BaseController {
 	 * @return
 	 * @throws BaseException 
 	 */
+	@Token(delete = true)
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
 	public String submit(@Validated ProductForm form, Model model, BindingResult r) throws BaseException {
 		setTitle(policy.getRecommendSubmit(), model);

@@ -28,7 +28,7 @@
 <form class="ui form" action="/recommend/confirm" method="get">
   <div class="field">
     <label>产品链接</label>
-    <input type="url" name="url" value="${url!}" placeholder="http(s)://">
+    <input type="url" name="url" value="${url!}" placeholder="http(s)://" autocomplete="off">
   </div>
   <button class="ui submit blue button" type="submit">提交</button>
 </form>
