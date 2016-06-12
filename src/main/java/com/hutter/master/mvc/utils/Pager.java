@@ -1,6 +1,10 @@
 package com.hutter.master.mvc.utils;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Page;
 
@@ -29,7 +33,7 @@ public class Pager implements Serializable {
 	 * @param pages
 	 * @return
 	 */
-	public static Pager of(Page<?> pages, String urlTemplate) {
+	public static Pager of(Page<?> pages, HttpServletRequest request) {
 		Pager pager = new Pager();
 		pager.setFirst(pages.isFirst());
 		pager.setHasNext(pages.hasNext());
@@ -38,8 +42,20 @@ public class Pager implements Serializable {
 		pager.setPage(pages.getNumber() + 1);
 		pager.setSize(pages.getSize());
 		pager.setTotal(pages.getTotalPages());
-		pager.setNextUrl(HttpUtil.appendQueryParams(urlTemplate, "page=" + (pages.getNumber()+2)));
-		pager.setPreviousUrl(HttpUtil.appendQueryParams(urlTemplate, "page=" + pages.getNumber()));
+		
+		// 设置分页链接
+		try {
+			String url = HttpUtil.getRequestURL(request);
+			String baseUrl = HttpUtil.removeQueryParams(url);
+			Map<String, String> map = HttpUtil.getQueryParams(url);
+			map.put("page", String.valueOf(pages.getNumber()));
+			pager.setPreviousUrl(HttpUtil.appendQueryParams(baseUrl, map));
+			map.put("page", String.valueOf(pages.getNumber() + 2));
+			pager.setNextUrl(HttpUtil.appendQueryParams(baseUrl, map));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return pager;
 	}
 	
@@ -101,6 +117,5 @@ public class Pager implements Serializable {
 	public void setPreviousUrl(String previousUrl) {
 		this.previousUrl = previousUrl;
 	}
-	
 	
 }

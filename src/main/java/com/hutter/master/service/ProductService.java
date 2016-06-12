@@ -48,4 +48,11 @@ public interface ProductService {
 	 */
 	Page<Product> findAll(String q, Pageable pageable) throws BaseException;
 	
+	/**
+	 * 点击统计
+	 * @param id
+	 * @return
+	 * @throws BaseException
+	 */
+	String hit(Long id) throws BaseException;
 }

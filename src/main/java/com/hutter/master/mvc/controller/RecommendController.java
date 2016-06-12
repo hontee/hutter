@@ -25,7 +25,7 @@ import com.hutter.master.service.ProductService;
 @RequestMapping("recommend")
 public class RecommendController extends BaseController {
 	
-	private Logger log = LoggerFactory.getLogger(RecommendController.class);
+	Logger logger = LoggerFactory.getLogger(RecommendController.class);
 	
 	@Autowired
 	private ProductService productS;
@@ -37,7 +37,7 @@ public class RecommendController extends BaseController {
 	private TitlePolicy policy;
 	
 	/**
-	 * 推荐
+	 * 推荐新产品
 	 * @return
 	 */
 	@RequestMapping(value = "", method=RequestMethod.GET)
@@ -47,7 +47,7 @@ public class RecommendController extends BaseController {
 	}
 	
 	/**
-	 * 推荐确认
+	 * 确认产品信息
 	 * @return
 	 */
 	@RequestMapping(value = "confirm", method=RequestMethod.GET)
@@ -75,7 +75,7 @@ public class RecommendController extends BaseController {
 		setTitle(policy.getRecommendSubmit(), model);
 		
 		if (r.hasErrors()) {
-			log.error("请求参数错误.");
+			logger.error("请求参数错误.");
 		}
 		
 	 	Product record = productS.addProduct(form);

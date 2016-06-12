@@ -1,5 +1,6 @@
 package com.hutter.master.data.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,9 @@ public class Product extends AuditorObject {
 	@Length(max = 1024)
 	private String url;
 	
+	@Column(columnDefinition="int default 0")
+	private Integer hit;
+	
 	public Product() {
 		super();
 	}
@@ -40,6 +44,14 @@ public class Product extends AuditorObject {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Integer getHit() {
+		return hit;
+	}
+
+	public void setHit(Integer hit) {
+		this.hit = hit;
 	}
 
 }

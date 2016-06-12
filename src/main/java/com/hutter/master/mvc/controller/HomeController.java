@@ -1,13 +1,16 @@
 package com.hutter.master.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,6 +24,8 @@ import com.hutter.master.service.ProductService;
 @Scope("prototype")
 public class HomeController extends BaseController {
 	
+	Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@Autowired
 	private ProductService productS;
 	
@@ -33,25 +38,28 @@ public class HomeController extends BaseController {
 	 * @throws BaseException 
 	 */
 	@RequestMapping("/")
-	public String home(@Validated PageForm page, @RequestParam(required = false) String q, Model model, BindingResult r) throws BaseException {
-		setTitle(policy.getHome(), model);
-		
-		page.orderNewest();
+	public String home(PageForm page, @RequestParam(required = false) String q, Model model, HttpServletRequest request)
+			throws BaseException {
 		Page<Product> pages = null;
-		String baseUri = "/";
 		
-		// 查询
 		if (StringUtils.isEmpty(q)) {
 			pages = productS.findAll(page.buildPageable());
 		} else {
-			pages= productS.findAll(q, page.buildPageable());
-			baseUri = "/?q=" + q;
+			logger.info("Search keywords: {}", q);
 			model.addAttribute("q", q);
+			pages= productS.findAll(q, page.buildPageable());
 		}
 		
-		addRecords(pages.getContent(), model);
-		addPager(pages, baseUri, model);
+		setTitle(policy.getHome(), model);
+		addRecordsAndPager(pages, request, model);
 		return "home/index";
+	}
+	
+	@RequestMapping("{id}/hit")
+	public String hit(@PathVariable Long id) throws BaseException {
+		String url = productS.hit(id);
+		logger.info("redirct url: {}", url);
+		return "redirect:" + url;
 	}
 	
 }

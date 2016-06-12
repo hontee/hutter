@@ -12,7 +12,7 @@
   <#list records as r>
   <div class="item">
     <div class="content">
-      <a class="header" href="${r.url}" target="_blank">${r.title}</a>
+      <a class="header" href="/${r.id}/hit" target="_blank">${r.title}</a>
       <div class="description">
         <p>${r.description}</p>
       </div>

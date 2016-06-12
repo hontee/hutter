@@ -28,7 +28,7 @@
 <div class="ui divided items">
   <div class="item">
     <div class="content">
-      <a class="header" href="${record.url!}" target="_blank">${record.title!}</a>
+      <a class="header" href="/${record.id}/hit" target="_blank">${record.title!}</a>
       <div class="description">
         <p>${record.description!}</p>
       </div>

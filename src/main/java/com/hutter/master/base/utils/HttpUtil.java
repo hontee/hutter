@@ -385,6 +385,21 @@ public class HttpUtil {
 	}
 	
 	/**
+	 * 请求路径URL
+	 * @param request
+	 * @return
+	 */
+	public static String getRequestURL(HttpServletRequest request) {
+		String url = request.getScheme() +"://" + request.getServerName()  
+        + ":" +request.getServerPort() 
+        + request.getServletPath();
+		if (request.getQueryString() != null){
+			url += "?" + request.getQueryString();
+		}
+		return url;
+	}
+	
+	/**
 	 * 根据请求获取真实的IP地址
 	 * @param request
 	 * @return

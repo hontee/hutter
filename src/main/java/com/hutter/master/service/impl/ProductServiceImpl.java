@@ -64,4 +64,12 @@ public class ProductServiceImpl implements ProductService {
 		}, pageable);
 	}
 
+	@Override
+	public String hit(Long id) throws BaseException {
+		Product entity = productR.findOne(id);
+		entity.setHit( entity.getHit().intValue() + 1);
+		productR.save(entity);
+		return entity.getUrl();
+	}
+
 }

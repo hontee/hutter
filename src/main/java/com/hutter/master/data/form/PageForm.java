@@ -43,6 +43,10 @@ public class PageForm implements Serializable {
 	 */
 	private String order;
 
+	public PageForm() {
+		orderNewest();
+	}
+
 	public Integer getPage() {
 		return page;
 	}
