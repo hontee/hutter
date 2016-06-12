@@ -8,6 +8,15 @@ import com.hutter.master.mvc.utils.Pager;
 public abstract class BaseController {
 	
 	/**
+	 * 设置标题
+	 * @param title
+	 * @param model
+	 */
+	public void setTitle(String title, Model model) {
+		model.addAttribute("title", title);
+	}
+	
+	/**
 	 * 数据列表
 	 * @param records
 	 * @param model

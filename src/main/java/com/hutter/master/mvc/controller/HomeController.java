@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hutter.master.base.exceptions.BaseException;
+import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.PageForm;
 import com.hutter.master.service.ProductService;
@@ -22,6 +23,9 @@ public class HomeController extends BaseController {
 	
 	@Autowired
 	private ProductService productS;
+	
+	@Autowired
+	private TitlePolicy policy;
 
 	/**
 	 * 首页
@@ -30,6 +34,8 @@ public class HomeController extends BaseController {
 	 */
 	@RequestMapping("/")
 	public String home(@Validated PageForm page, @RequestParam(required = false) String q, Model model, BindingResult r) throws BaseException {
+		setTitle(policy.getHome(), model);
+		
 		page.orderNewest();
 		Page<Product> pages = null;
 		String baseUri = "/";
