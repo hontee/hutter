@@ -16,8 +16,8 @@ public class BaseException extends Exception {
 		this.errorCode = errorCode;
 	}
 
-	public String getErrorCode() {
-		return errorCode.getName();
+	public ErrorCode getErrorCode() {
+		return errorCode;
 	}
 
 }

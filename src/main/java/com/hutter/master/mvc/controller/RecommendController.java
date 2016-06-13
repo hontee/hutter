@@ -19,6 +19,7 @@ import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.ProductForm;
 import com.hutter.master.mvc.annotation.Token;
+import com.hutter.master.mvc.base.BaseController;
 import com.hutter.master.service.ProductService;
 
 @Controller
@@ -43,7 +44,7 @@ public class RecommendController extends BaseController {
 	 */
 	@RequestMapping(value = "", method=RequestMethod.GET)
 	public String recommend(Model model) {
-		setTitle(policy.getRecommend(), model);
+		addTitle(policy.getRecommend(), model);
 		return "recommend/new";
 	}
 	
@@ -54,8 +55,8 @@ public class RecommendController extends BaseController {
 	@Token(add = true)
 	@RequestMapping(value = "confirm", method=RequestMethod.GET)
 	public String confirm(@RequestParam String url, Model model) {
-		setTitle(policy.getRecommendConfirm(), model);
 		
+		// 如果URL存在，则显示提示信息
 		if (productS.checkIsExists(url)) {
 			model.addAttribute("exists", true);
 			model.addAttribute("url", url);
@@ -64,25 +65,30 @@ public class RecommendController extends BaseController {
 		
 		WebInfo webInfo = client.fetch(url);
 		model.addAttribute("webInfo", webInfo);
+		addTitle(policy.getRecommendConfirm(), model);
 		return "recommend/confirm";
 	}
 	
 	/**
-	 * 发布
+	 * 提交产品信息
 	 * @return
 	 * @throws BaseException 
 	 */
 	@Token(delete = true)
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
-	public String submit(@Validated ProductForm form, Model model, BindingResult r) throws BaseException {
-		setTitle(policy.getRecommendSubmit(), model);
+	public String submit(@Validated ProductForm form, Model model, BindingResult bindingResult) {
+		logger.info("提交产品信息：{}", form.toJSONString());
+		checkAssert(bindingResult);
+		addTitle(policy.getRecommendSubmit(), model);
 		
-		if (r.hasErrors()) {
-			logger.error("请求参数错误.");
+	 	try {
+			Product record = productS.addProduct(form);
+			model.addAttribute("record", record);
+		} catch (BaseException e) {
+			logger.error("提交产品信息失败：{}", e.getErrorCode().toString());
+			e.printStackTrace();
 		}
-		
-	 	Product record = productS.addProduct(form);
-	 	model.addAttribute("record", record);
+	 	
 		return "recommend/submit";
 	}
 

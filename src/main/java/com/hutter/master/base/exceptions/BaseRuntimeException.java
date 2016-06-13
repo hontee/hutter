@@ -16,8 +16,8 @@ public class BaseRuntimeException extends RuntimeException {
 		this.errorCode = errorCode;
 	}
 
-	public String getErrorCode() {
-		return errorCode.getName();
+	public ErrorCode getErrorCode() {
+		return errorCode;
 	}
 
 }

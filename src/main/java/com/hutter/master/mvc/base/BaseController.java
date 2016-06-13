@@ -1,4 +1,4 @@
-package com.hutter.master.mvc.controller;
+package com.hutter.master.mvc.base;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,14 +7,14 @@ import org.springframework.ui.Model;
 
 import com.hutter.master.mvc.utils.Pager;
 
-public abstract class BaseController {
+public abstract class BaseController extends AssertBase {
 	
 	/**
 	 * 设置标题
 	 * @param title
 	 * @param model
 	 */
-	public void setTitle(String title, Model model) {
+	public void addTitle(String title, Model model) {
 		model.addAttribute("title", title);
 	}
 	

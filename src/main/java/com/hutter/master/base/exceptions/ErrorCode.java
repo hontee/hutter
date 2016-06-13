@@ -22,19 +22,23 @@ public enum ErrorCode {
 	PRODUCT_NOT_EXISTS("产品不存在"),
 	;
 	
-	private String name;
+	private String value;
 	
-	private ErrorCode(String name) {
-		this.name = name;
+	private ErrorCode(String value) {
+		this.value = value;
 	}
 
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setValue(String value) {
+		this.value = value;
 	}
-	
+
+	@Override
+	public String toString() {
+		return this.getValue() + "(" + this.name() + ")";
+	}
 	
 }

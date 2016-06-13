@@ -18,6 +18,7 @@ import com.hutter.master.base.exceptions.BaseException;
 import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.PageForm;
+import com.hutter.master.mvc.base.BaseController;
 import com.hutter.master.service.ProductService;
 
 @Controller
@@ -50,7 +51,7 @@ public class HomeController extends BaseController {
 			pages= productS.findAll(q, page.buildPageable());
 		}
 		
-		setTitle(policy.getHome(), model);
+		addTitle(policy.getHome(), model);
 		addRecordsAndPager(pages, request, model);
 		return "home/index";
 	}

@@ -45,7 +45,7 @@ public class Pager implements Serializable {
 		
 		// 设置分页链接
 		try {
-			String url = HttpUtil.getRequestURL(request);
+			String url = HttpUtil.getRequestPath(request);
 			String baseUrl = HttpUtil.removeQueryParams(url);
 			Map<String, String> map = HttpUtil.getQueryParams(url);
 			map.put("page", String.valueOf(pages.getNumber()));

@@ -389,10 +389,8 @@ public class HttpUtil {
 	 * @param request
 	 * @return
 	 */
-	public static String getRequestURL(HttpServletRequest request) {
-		String url = request.getScheme() +"://" + request.getServerName()  
-        + ":" +request.getServerPort() 
-        + request.getServletPath();
+	public static String getRequestPath(HttpServletRequest request) {
+		String url = request.getServletPath();
 		if (request.getQueryString() != null){
 			url += "?" + request.getQueryString();
 		}

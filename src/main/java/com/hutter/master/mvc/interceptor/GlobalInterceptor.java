@@ -34,7 +34,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
 				
 				if (annotation.delete()) {
 					if (isRequestSubmit(request)) {
-						logger.warn("Please don't repeat submit: {}", HttpUtil.getRequestURL(request));
+						logger.warn("Please don't repeat submit: {}", HttpUtil.getRequestPath(request));
 						return false;
 					}
 					
