@@ -1,12 +1,4 @@
 <@override name="body">
-<h4 class="ui horizontal divider header">
-  <#if q??>
-  搜索结果
-  <#else>
-  产品列表
-  </#if>
-</h4>
-
 <#if (records?size>0)>
 <div class="ui divided items">
   <#list records as r>
@@ -20,9 +12,9 @@
   </div>
   </#list>
 </div>
+<@extends name="snippets/pager.ftl"/>
 <#else>
 没有找到记录
-<@override name="pager" />
 </#if>
 </@override>
 

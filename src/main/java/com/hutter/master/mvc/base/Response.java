@@ -1,8 +1,8 @@
-package com.hutter.master.mvc.rest.exts;
+package com.hutter.master.mvc.base;
 
 import java.io.Serializable;
 
-public class ResponseVO implements Serializable {
+public class Response implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private boolean success;

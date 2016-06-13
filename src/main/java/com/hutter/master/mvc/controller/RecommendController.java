@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hutter.master.base.client.SpiderClient;
+import com.hutter.master.base.client.SpiderInfo;
 import com.hutter.master.base.exceptions.BaseException;
-import com.hutter.master.base.fetch.FetchClient;
-import com.hutter.master.base.fetch.WebInfo;
 import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.ProductForm;
@@ -33,7 +33,7 @@ public class RecommendController extends BaseController {
 	private ProductService productS;
 	
 	@Autowired
-	private FetchClient client;
+	private SpiderClient client;
 	
 	@Autowired
 	private TitlePolicy policy;
@@ -63,8 +63,8 @@ public class RecommendController extends BaseController {
 			return "recommend/new";
 		}
 		
-		WebInfo webInfo = client.fetch(url);
-		model.addAttribute("webInfo", webInfo);
+		SpiderInfo spider = client.fetch(url);
+		model.addAttribute("spider", spider);
 		addTitle(policy.getRecommendConfirm(), model);
 		return "recommend/confirm";
 	}
@@ -78,17 +78,10 @@ public class RecommendController extends BaseController {
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
 	public String submit(@Validated ProductForm form, Model model, BindingResult bindingResult) {
 		logger.info("提交产品信息：{}", form.toJSONString());
-		checkAssert(bindingResult);
 		addTitle(policy.getRecommendSubmit(), model);
-		
-	 	try {
-			Product record = productS.addProduct(form);
-			model.addAttribute("record", record);
-		} catch (BaseException e) {
-			logger.error("提交产品信息失败：{}", e.getErrorCode().toString());
-			e.printStackTrace();
-		}
-	 	
+		checkAssert(bindingResult);
+		Product record = productS.addProduct(form);
+		model.addAttribute("record", record);
 		return "recommend/submit";
 	}
 

@@ -1,10 +1,10 @@
-package com.hutter.master.base.fetch;
+package com.hutter.master.base.client;
 
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class WebInfo implements Serializable {
+public class SpiderInfo implements Serializable {
 
   private static final long serialVersionUID = 1L;
   
@@ -24,11 +24,11 @@ public class WebInfo implements Serializable {
   
   private long time;
 
-  public WebInfo() {
+  public SpiderInfo() {
     super();
   }
 
-  public WebInfo(String url) {
+  public SpiderInfo(String url) {
     setUrl(url);
   }
 

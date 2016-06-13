@@ -1,6 +1,4 @@
 <@override name="body">
-<h4 class="ui horizontal divider header">确认产品信息</h4>
-
 <div class="ui three steps">
   <div class="disabled step">
     <i class="linkify icon"></i>
@@ -29,15 +27,15 @@
   <input type="hidden" name="token" value="${token!}" />
   <div class="field">
     <label>链接</label>
-    <input type="url" name="url" value="${webInfo.url!}" readonly>
+    <input type="url" name="url" value="${spider.url!}" readonly>
   </div>
   <div class="field">
     <label>标题</label>
-    <input name="title" value="${webInfo.title!}" placeholder="标题">
+    <input name="title" value="${spider.title!}" placeholder="标题">
   </div>
   <div class="field">
     <label>描述</label>
-    <textarea rows="2" name="description" placeholder="简短的描述">${webInfo.description!}</textarea>
+    <textarea rows="2" name="description" placeholder="简短的描述">${spider.description!}</textarea>
   </div>
   <button class="ui submit blue button" type="submit">确认提交</button>
 </form>

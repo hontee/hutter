@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
  * @author larry.qi
  */
 @Configuration
-@ConfigurationProperties(prefix = "web.fetch")
-public class FetchProperties {
+@ConfigurationProperties(prefix = "spider")
+public class SpiderProperties {
   
   private String userAgent;
   private int timeout;
@@ -17,7 +17,7 @@ public class FetchProperties {
   private boolean ignoreContentType;
   private boolean ignoreHttpErrors;
   
-  public FetchProperties() {}
+  public SpiderProperties() {}
 
   public String getUserAgent() {
     return userAgent;

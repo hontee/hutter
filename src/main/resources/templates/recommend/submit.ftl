@@ -1,6 +1,4 @@
 <@override name="body">
-<h4 class="ui horizontal divider header">推荐成功</h4>
-
 <div class="ui three steps">
   <div class="disabled step">
     <i class="linkify icon"></i>

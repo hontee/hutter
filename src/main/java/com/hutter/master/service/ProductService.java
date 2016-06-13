@@ -15,7 +15,7 @@ public interface ProductService {
 	 * @return
 	 * @throws BaseException
 	 */
-	Product addProduct(ProductForm form) throws BaseException;
+	Product addProduct(ProductForm form);
 	
 	/**
 	 * 检测是否存在URL
@@ -30,7 +30,7 @@ public interface ProductService {
 	 * @return
 	 * @throws BaseException
 	 */
-	Product findOne(Long id) throws BaseException;
+	Product findOne(Long id);
 	
 	/**
 	 * 分页查询
@@ -38,7 +38,7 @@ public interface ProductService {
 	 * @return
 	 * @throws BaseException
 	 */
-	Page<Product> findAll(Pageable pageable) throws BaseException;
+	Page<Product> findAll(Pageable pageable);
 	
 	/**
 	 * 分页查询
@@ -46,7 +46,7 @@ public interface ProductService {
 	 * @return
 	 * @throws BaseException
 	 */
-	Page<Product> findAll(String q, Pageable pageable) throws BaseException;
+	Page<Product> findAll(String q, Pageable pageable);
 	
 	/**
 	 * 点击统计
@@ -54,5 +54,5 @@ public interface ProductService {
 	 * @return
 	 * @throws BaseException
 	 */
-	String hit(Long id) throws BaseException;
+	String hit(Long id);
 }

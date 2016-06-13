@@ -1,6 +1,4 @@
 <@override name="body">
-<h4 class="ui horizontal divider header">推荐新产品 </h4>
-
 <div class="ui three steps">
   <div class="active step">
     <i class="linkify icon"></i>
@@ -25,6 +23,12 @@
   </div>
 </div>
 
+<#if exists??>
+<div class="ui error message">
+  <p>推荐的产品链接已存在 </p>
+</div>
+</#if>
+
 <form class="ui form" action="/recommend/confirm" method="get">
   <div class="field">
     <label>产品链接</label>
@@ -32,12 +36,6 @@
   </div>
   <button class="ui submit blue button" type="submit">提交</button>
 </form>
-
-<#if exists??>
-<div class="ui error message">
-  <p>推荐的产品链接已存在 </p>
-</div>
-</#if>
 </@override>
 
 <@override name="script">

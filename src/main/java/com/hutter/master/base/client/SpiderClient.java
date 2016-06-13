@@ -1,4 +1,4 @@
-package com.hutter.master.base.fetch;
+package com.hutter.master.base.client;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import com.hutter.master.base.properties.FetchProperties;
+import com.hutter.master.base.properties.SpiderProperties;
 
 /**
  * 网页抓取工具
@@ -17,39 +17,39 @@ import com.hutter.master.base.properties.FetchProperties;
  * @author larry.qi
  */
 @Configuration
-public class FetchClient {
+public class SpiderClient {
 
-  private Logger logger = LoggerFactory.getLogger(FetchClient.class);
+  private Logger logger = LoggerFactory.getLogger(SpiderClient.class);
   private static final String META_KEYWORDS = "meta[name=keywords]";
   private static final String META_DESCRIPTION = "meta[name=description]";
   private static final String CONTENT = "content";
 
   @Autowired
-  private FetchProperties props;
+  private SpiderProperties props;
 
   /**
    * 获取页面信息
    * @param url
    * @return
    */
-  public WebInfo fetch(String url) {
+  public SpiderInfo fetch(String url) {
     long startTime = System.currentTimeMillis();
-    WebInfo webInfo = new WebInfo(url);
+    SpiderInfo spider = new SpiderInfo(url);
     try {
       Document html = fetchHtml(url);
-      webInfo.setTitle(html.title());
-      webInfo.setSuccess(true);
+      spider.setTitle(html.title());
+      spider.setSuccess(true);
   
       try {
         String keywords = html.select(META_KEYWORDS).first().attr(CONTENT);
-        webInfo.setKeywords(keywords);
+        spider.setKeywords(keywords);
       } catch (Exception e) {
         logger.warn("keywords not found from url: {}", url);
       }
   
       try {
         String description = html.select(META_DESCRIPTION).first().attr(CONTENT);
-        webInfo.setDescription(description);
+        spider.setDescription(description);
       } catch (Exception e) {
         logger.warn("Description not found from url: {}", url);
       }
@@ -57,10 +57,10 @@ public class FetchClient {
       logger.warn("Get document context error from url: {}", url);
     } finally {
       long endTime = System.currentTimeMillis();
-      webInfo.setTime(endTime - startTime);
+      spider.setTime(endTime - startTime);
     }
   
-    return webInfo;
+    return spider;
   }
 
   /**
