@@ -1,27 +1,5 @@
 <@override name="body">
-<div class="ui three steps">
-  <div class="disabled step">
-    <i class="linkify icon"></i>
-    <div class="content">
-      <div class="title">第一步：</div>
-      <div class="description">填写产品的链接地址</div>
-    </div>
-  </div>
-  <div class="disabled step">
-    <i class="edit icon"></i>
-    <div class="content">
-      <div class="title">第二步：</div>
-      <div class="description">补全产品标题和描述</div>
-    </div>
-  </div>
-  <div class="active step">
-    <i class="info icon"></i>
-    <div class="content">
-      <div class="title">第三步：</div>
-      <div class="description">推荐结果确认</div>
-    </div>
-  </div>
-</div>
+<@extends name="recommend/snippets/steps.ftl" />
 
 <div class="ui divided items">
   <div class="item">

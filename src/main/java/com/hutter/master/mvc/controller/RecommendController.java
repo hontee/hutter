@@ -39,17 +39,18 @@ public class RecommendController extends BaseController {
 	private TitlePolicy policy;
 	
 	/**
-	 * 推荐新产品
+	 * 开发者推荐：填写推荐网址
 	 * @return
 	 */
 	@RequestMapping(value = "", method=RequestMethod.GET)
 	public String recommend(Model model) {
 		addTitle(policy.getRecommend(), model);
+		model.addAttribute("step", "1");
 		return "recommend/new";
 	}
 	
 	/**
-	 * 确认产品信息
+	 * 开发者推荐：编辑推荐信息
 	 * @return
 	 */
 	@Token(add = true)
@@ -65,23 +66,25 @@ public class RecommendController extends BaseController {
 		
 		SpiderInfo spider = client.fetch(url);
 		model.addAttribute("spider", spider);
-		addTitle(policy.getRecommendConfirm(), model);
+		addTitle(policy.getRecommend(), model);
+		model.addAttribute("step", "2");
 		return "recommend/confirm";
 	}
 	
 	/**
-	 * 提交产品信息
+	 * 开发者推荐：确认推荐结果
 	 * @return
 	 * @throws BaseException 
 	 */
 	@Token(delete = true)
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
 	public String submit(@Validated ProductForm form, Model model, BindingResult bindingResult) {
-		logger.info("提交产品信息：{}", form.toJSONString());
-		addTitle(policy.getRecommendSubmit(), model);
+		logger.info("开发者推荐信息：{}", form.toJSONString());
+		addTitle(policy.getRecommend(), model);
 		checkAssert(bindingResult);
 		Product record = productS.addProduct(form);
 		model.addAttribute("record", record);
+		model.addAttribute("step", "3");
 		return "recommend/submit";
 	}
 

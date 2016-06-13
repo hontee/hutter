@@ -18,7 +18,7 @@
 <body>
 <#-- navbar block -->
 <@block name="navbar">
-<header class="ui top fixed menu">
+<header class="ui top fixed menu" style="background:#f5f5f5;box-shadow:none;">
   <a class="header item" href="/">Hutter</a>
   <div class="item">
     <form class="ui icon input" action="/" method="get">
@@ -26,7 +26,7 @@
       <i class="search icon"></i>
     </form>
   </div>
-  <a class="right item" href="/recommend"><i class="add icon"></i> 推荐新产品</a>
+  <a class="right item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
 </header>
 </@block>
 

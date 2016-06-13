@@ -1,40 +1,18 @@
 <@override name="body">
-<div class="ui three steps">
-  <div class="active step">
-    <i class="linkify icon"></i>
-    <div class="content">
-      <div class="title">第一步：</div>
-      <div class="description">填写产品的链接地址</div>
-    </div>
-  </div>
-  <div class="disabled step">
-    <i class="edit icon"></i>
-    <div class="content">
-      <div class="title">第二步：</div>
-      <div class="description">补全产品标题和描述</div>
-    </div>
-  </div>
-  <div class="disabled step">
-    <i class="info icon"></i>
-    <div class="content">
-      <div class="title">第三步：</div>
-      <div class="description">推荐结果确认</div>
-    </div>
-  </div>
-</div>
+<@extends name="recommend/snippets/steps.ftl" />
 
 <#if exists??>
 <div class="ui error message">
-  <p>推荐的产品链接已存在 </p>
+  <p>您推荐的网址已经存在！</p>
 </div>
 </#if>
 
 <form class="ui form" action="/recommend/confirm" method="get">
   <div class="field">
-    <label>产品链接</label>
-    <input type="url" name="url" value="${url!}" placeholder="http(s)://" autocomplete="off">
+    <label>链接地址</label>
+    <input type="url" name="url" value="${url!}" placeholder="以 http(s):// 开头的有效网址" autocomplete="off">
   </div>
-  <button class="ui submit blue button" type="submit">提交</button>
+  <button class="ui submit blue button" type="submit">我要推荐</button>
 </form>
 </@override>
 

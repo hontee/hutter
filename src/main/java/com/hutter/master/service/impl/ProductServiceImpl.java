@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
 		Product entity = new Product();
 		entity.setName(entity.randomUUID());
 		entity.setState((byte)1);
+		entity.setHit(0);
 		entity.setUrl(form.getUrl());
 		entity.setTitle(form.getTitle());
 		entity.setDescription(form.getDescription());

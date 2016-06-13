@@ -13,44 +13,21 @@ public class TitlePolicy {
 	private String name;
 	
 	/**
-	 * 分隔符 · 
-	 */
-	private String divide;
-	
-	/**
 	 * 首页
 	 */
 	private String home;
 	
 	/**
-	 * 推荐新产品
+	 * 开发者推荐
 	 */
 	private String recommend;
 	
-	/**
-	 * 推荐确认
-	 */
-	private String recommendConfirm;
-	
-	/**
-	 * 推荐提交
-	 */
-	private String recommendSubmit;
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDivide() {
-		return divide;
-	}
-
-	public void setDivide(String divide) {
-		this.divide = divide;
 	}
 
 	public String getHome() {
@@ -69,20 +46,4 @@ public class TitlePolicy {
 		this.recommend = recommend;
 	}
 
-	public String getRecommendConfirm() {
-		return recommendConfirm;
-	}
-
-	public void setRecommendConfirm(String recommendConfirm) {
-		this.recommendConfirm = recommendConfirm;
-	}
-
-	public String getRecommendSubmit() {
-		return recommendSubmit;
-	}
-
-	public void setRecommendSubmit(String recommendSubmit) {
-		this.recommendSubmit = recommendSubmit;
-	}
-	
 }
