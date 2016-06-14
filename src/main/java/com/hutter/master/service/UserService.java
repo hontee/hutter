@@ -28,5 +28,5 @@ public interface UserService {
 	 * @throws BaseException
 	 */
 	void login(String name, String password) throws BaseException;
-
+	
 }

@@ -1,5 +1,6 @@
 package com.hutter.master.base.aware;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -17,7 +18,13 @@ public class ShiroAuditorAware {
 
 			@Override
 			public User getCurrentAuditor() {
-				return new User(1L);
+				User currentUser = new User(1L);
+				
+				if (SecurityUtils.getSubject().isAuthenticated()) {
+					currentUser = (User)SecurityUtils.getSubject().getSession().getAttribute("oauth");
+				}
+				
+				return currentUser;
 			}
 		};
 	}
