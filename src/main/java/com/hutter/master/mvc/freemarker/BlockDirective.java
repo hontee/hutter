@@ -21,6 +21,7 @@ public class BlockDirective implements TemplateDirectiveModel {
 
   public final static String DIRECTIVE_NAME = "block";
 
+  @Override
   @SuppressWarnings("rawtypes")
   public void execute(Environment env, Map params, TemplateModel[] loopVars,
       TemplateDirectiveBody body) throws TemplateException, IOException {

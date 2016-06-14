@@ -76,4 +76,17 @@ public class OAuthRest extends BaseRest {
 		return buildResponse(body);
 	}
 	
+	/**
+	 * 退出登录
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public ResponseEntity<Response> logout() {
+		Response body = new Response();
+		super.getSubject().logout();
+		body.setMessage("已退出登录");
+		body.setSuccess(true);
+		return buildResponse(body);
+	}
+	
 }

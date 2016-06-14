@@ -18,6 +18,7 @@ public class OverrideDirective implements TemplateDirectiveModel {
 
   public final static String DIRECTIVE_NAME = "override";
 
+  @Override
   @SuppressWarnings("rawtypes")
   public void execute(Environment env, Map params, TemplateModel[] loopVars,
       TemplateDirectiveBody body) throws TemplateException, IOException {
@@ -47,7 +48,8 @@ public class OverrideDirective implements TemplateDirectiveModel {
       this.env = env;
     }
 
-    public void render(Writer out) throws TemplateException, IOException {
+    @Override
+	public void render(Writer out) throws TemplateException, IOException {
       if (body == null) return;
 
       TemplateDirectiveBodyOverrideWraper preOverridy = (TemplateDirectiveBodyOverrideWraper) env

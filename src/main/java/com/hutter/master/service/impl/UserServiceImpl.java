@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		try {
-			UsernamePasswordToken token = new UsernamePasswordToken(sign.getName(), password);
+			UsernamePasswordToken token = new UsernamePasswordToken(sign.getName(), password, true);
 			Subject subject = SecurityUtils.getSubject();
 			subject.login(token);
 			Session session = subject.getSession();

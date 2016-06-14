@@ -55,11 +55,11 @@ public abstract class AuthorizingBase {
 	 * @return
 	 */
 	public String getUserName() {
-		return (String)getCurrentUser().getName();
+		return getCurrentUser().getName();
 	}
 	
 	public String getEmail() {
-		return (String)getCurrentUser().getEmail();
+		return getCurrentUser().getEmail();
 	}
 	
 	/**

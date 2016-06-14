@@ -18,6 +18,7 @@ public class ExtendsDirective implements TemplateDirectiveModel {
 
   public final static String DIRECTIVE_NAME = "extends";
 
+  @Override
   @SuppressWarnings({"rawtypes", "deprecation"})
   public void execute(Environment env, Map params, TemplateModel[] loopVars,
       TemplateDirectiveBody body) throws TemplateException, IOException {
