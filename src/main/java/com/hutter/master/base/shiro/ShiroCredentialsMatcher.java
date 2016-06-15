@@ -1,5 +1,6 @@
 package com.hutter.master.base.shiro;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -8,9 +9,10 @@ import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.util.ByteSource;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 
 /**
  * 1. 限定用户登录次数<br>
@@ -18,15 +20,21 @@ import org.apache.shiro.util.ByteSource;
  * @author larry.qi
  */
 public class ShiroCredentialsMatcher extends SimpleCredentialsMatcher {
-
+	
   private Cache<String, AtomicInteger> passwordRetryCache;
+  
+  public ShiroCredentialsMatcher() {
+	passwordRetryCache = CacheBuilder.newBuilder()
+		.maximumSize(1000)  
+	    .expireAfterWrite(60,TimeUnit.MINUTES)  
+		.build(); 
+}
 
-  /**
-   * 参考EhCache.xml配置参数
-   */
-  public ShiroCredentialsMatcher(CacheManager cacheManager) {
+  /*private Cache<String, AtomicInteger> passwordRetryCache;*/
+
+  /*public ShiroCredentialsMatcher(CacheManager cacheManager) {
     passwordRetryCache = cacheManager.getCache("shiro.passwordRetryCache");
-  }
+  }*/
 
   @Override
   public boolean doCredentialsMatch(AuthenticationToken authToken, AuthenticationInfo authInfo) {
@@ -36,7 +44,7 @@ public class ShiroCredentialsMatcher extends SimpleCredentialsMatcher {
     String password = String.valueOf(token.getPassword());
 
     // 限定登录次数
-    AtomicInteger retryCount = passwordRetryCache.get(username);
+    AtomicInteger retryCount = passwordRetryCache.getIfPresent(username);
     if (retryCount == null) {
       retryCount = new AtomicInteger(0);
       passwordRetryCache.put(username, retryCount);
@@ -53,7 +61,7 @@ public class ShiroCredentialsMatcher extends SimpleCredentialsMatcher {
     String encryptPass = EncryptHelper.encrypt(password, salt); // 加密处理后的密码
     boolean matches = super.equals(dbPass, encryptPass);
     if (matches) {
-      passwordRetryCache.remove(username);
+      passwordRetryCache.invalidate(username);
     }
 
     return matches;

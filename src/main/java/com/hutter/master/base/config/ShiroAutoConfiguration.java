@@ -1,6 +1,5 @@
 package com.hutter.master.base.config;
 
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -31,15 +30,8 @@ public class ShiroAutoConfiguration {
 	}
 
 	@Bean
-	public EhCacheManager cacheManager() {
-		EhCacheManager cacheManager = new EhCacheManager();
-		cacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-		return cacheManager;
-	}
-
-	@Bean
 	public ShiroCredentialsMatcher credentialsMatcher() {
-		return new ShiroCredentialsMatcher(cacheManager());
+		return new ShiroCredentialsMatcher();
 	}
 	
 	@Bean
