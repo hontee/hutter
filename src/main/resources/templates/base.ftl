@@ -34,7 +34,7 @@
     <a class="item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
     <#if oauth??>
     <div id="oauth-dropdown" class="ui right dropdown item">
-      <i class="dashboard icon"></i> ${oauth.title}
+      <i class="dashboard icon"></i> ${oauth.title!}
       <i class="dropdown icon"></i>
       <div class="menu">
         <a class="item"><i class="home icon"></i> 我的主页</a>

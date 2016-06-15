@@ -52,8 +52,6 @@ public class ShiroAutoConfiguration {
 		ShiroFilterFactoryBean shiroFilterFactory = new ShiroFilterFactoryBean();
 		shiroFilterFactory.setSecurityManager(securityManager());
 		shiroFilterFactory.setLoginUrl("/login");
-		shiroFilterFactory.setSuccessUrl("/signin");
-		shiroFilterFactory.setUnauthorizedUrl("/authc");
 		shiroFilterFactory.setFilterChainDefinitions("/cms/**=authc");
 		return shiroFilterFactory;
 	}
