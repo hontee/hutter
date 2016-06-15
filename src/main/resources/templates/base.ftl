@@ -9,6 +9,10 @@
   <title>${title!"Hutter"}</title>
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
+  <#if oauth??>
+  <meta property="hutter:id" content="${oauth.id}">
+  <meta property="hutter:user" content="${oauth.name}">
+  </#if>
   <#-- resources block -->
   <@block name="resources">
   <link href="${urls.getForLookupPath('/dist/semantic.css')}" rel="stylesheet">
@@ -26,7 +30,22 @@
       <i class="search icon"></i>
     </form>
   </div>
-  <a class="right item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
+  <div class="right menu">
+    <a class="item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
+    <#if oauth??>
+    <div id="oauth-dropdown" class="ui right dropdown item">
+      <i class="dashboard icon"></i> ${oauth.title}
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item"><i class="home icon"></i> 我的主页</a>
+        <a class="item"><i class="setting icon"></i> 个人设置</a>
+        <a class="item" href="/logout"><i class="sign out icon"></i> 退出</a>
+      </div>
+    </div>
+    <#else>
+    <a class="item" href="/login"><i class="sign in icon"></i> 登录</a>
+    </#if>
+  </div>
 </header>
 </@block>
 
@@ -39,6 +58,7 @@
 <@block name="script">
 <script src="${urls.getForLookupPath('/js/modernizr.js')}"></script>
 <script src="${urls.getForLookupPath('/js/jquery.js')}"></script>
+<script src="${urls.getForLookupPath('/js/hutter.js')}"></script>
 <script src="${urls.getForLookupPath('/dist/semantic.js')}"></script>
 </@block>
 </body>
