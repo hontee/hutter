@@ -1,4 +1,6 @@
 <@override name="body">
+<div class="ui message hidden"></div>
+
 <form class="ui form" action="javascript:void(0)">
   <div class="field">
     <label>帐号</label>
@@ -10,8 +12,6 @@
   </div>
   <button class="ui blue button" type="submit">登录</button>
 </form>
-
-<div class="ui error message hidden"></div>
 </@override>
 
 <@override name="script">
@@ -19,4 +19,4 @@
 <script src="${urls.getForLookupPath('/modules/oauth.js')}"></script>
 </@override>
 
-<@extends name="../base.ftl" />
+<@extends name="/base.ftl" />

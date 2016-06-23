@@ -15,6 +15,7 @@ import com.hutter.master.base.exceptions.BaseException;
 import com.hutter.master.base.exceptions.ErrorCode;
 import com.hutter.master.base.shiro.EncryptHelper;
 import com.hutter.master.data.domain.User;
+import com.hutter.master.data.form.SettingsForm;
 import com.hutter.master.data.form.UserForm;
 import com.hutter.master.data.repository.UserRepository;
 import com.hutter.master.service.UserService;
@@ -61,6 +62,17 @@ public class UserServiceImpl implements UserService {
 	public User findOne(Long id) throws BaseException {
 		return userR.findOne(id);
 	}
+	
+	@Override
+	public User findOne(String nameOrEmail){
+		Preconditions.checkNotNull(nameOrEmail, "nameOrEmail is null.");
+		
+		if (nameOrEmail.contains("@")) {
+			return userR.findByEmail(nameOrEmail);
+		}
+		
+		return userR.findByName(nameOrEmail);
+	}
 
 	@Override
 	public void login(String name, String password) throws BaseException {
@@ -89,6 +101,23 @@ public class UserServiceImpl implements UserService {
 			logger.error("User [{}] login failed: {}", name, Throwables.getStackTraceAsString(e));
 			throw new BaseException(ErrorCode.OAUTH_USERNAME_PASSWORD_ERROR, e);
 		} 
+	}
+
+	@Override
+	public User settings(Long id, SettingsForm form) throws BaseException {
+		Preconditions.checkNotNull(form, "settings form is null.");
+		User record = userR.findByEmail(form.getEmail());
+		
+		if (record != null && !id.equals(record.getId())) {
+			logger.error("the email was exists: {}", form.getEmail());
+			throw new BaseException(ErrorCode.OAUTH_EMAIL_EXISTS);
+		}
+
+		record = userR.findOne(id);
+		record.setTitle(form.getTitle());
+		record.setEmail(form.getEmail());
+		record.setDescription(form.getDescription());
+		return userR.save(record);
 	}
 
 }

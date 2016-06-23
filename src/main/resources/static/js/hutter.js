@@ -10,8 +10,16 @@ hutter.render = function(path) {
 	window.location.href = path;
 }
 
-hutter.msg = function(selector, message) {
-	selector.text(message).show();
+hutter.info = function(selector, message) {
+	selector.addClass('info').text(message).show();
+}
+
+hutter.error = function(selector, message) {
+	selector.addClass('error').text(message).show();
+}
+
+hutter.warn = function(selector, message) {
+	selector.addClass('warning').text(message).show();
 }
 
 hutter.loader = function(selector) {

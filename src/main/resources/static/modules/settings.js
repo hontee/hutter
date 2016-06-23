@@ -7,23 +7,22 @@ $(document).ready(function() {
   form.form({
     keyboardShortcuts: false,
     fields: {
-      username: 'empty',
-      password: 'empty',
+      title: 'empty',
+      email: ['empty', 'email'],
     }
   });
   
   // submit form
   form.on('submit', function() {
     if (form.form('is valid')) {
-      message.hide();
       hutter.loader(button);
-      $.post("/oauth/login", form.serialize()).done(function(data) {
+      $.post("/api/users/settings", form.serialize()).done(function(data) {
 	    if (data.success) {
-		  hutter.render(data.result);
+	      hutter.info(message, data.message);
 		} else {
 		  hutter.error(message, data.message);
-		  hutter.unloader(button);
 		}
+	    hutter.unloader(button);
       });
 	}
   });

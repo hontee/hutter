@@ -2,6 +2,7 @@ package com.hutter.master.service;
 
 import com.hutter.master.base.exceptions.BaseException;
 import com.hutter.master.data.domain.User;
+import com.hutter.master.data.form.SettingsForm;
 import com.hutter.master.data.form.UserForm;
 
 public interface UserService {
@@ -22,11 +23,26 @@ public interface UserService {
 	User findOne(Long id) throws BaseException;
 	
 	/**
+	 * 根据用户名或邮箱查询
+	 * @param nameOrEmail
+	 * @return
+	 */
+	User findOne(String nameOrEmail);
+	
+	/**
 	 * 用户登录
 	 * @param name
 	 * @param password
 	 * @throws BaseException
 	 */
 	void login(String name, String password) throws BaseException;
+	
+	/**
+	 * 用户设置
+	 * @param id
+	 * @param form
+	 * @throws BaseException
+	 */
+	User settings(Long id, SettingsForm form) throws BaseException;
 	
 }

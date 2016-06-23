@@ -114,6 +114,27 @@
 
 
 /*******************************
+           Jumbotron
+*******************************/
+
+.ui.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.ui.jumbotron h1,
+.ui.jumbotron .h1 {
+  color: #000;
+}
+.ui.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+
+/*******************************
          Theme Overrides
 *******************************/
 

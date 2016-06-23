@@ -1,5 +1,5 @@
 <@override name="body">
-<@extends name="recommend/snippets/steps.ftl" />
+<@extends name="/recommend/snippets/steps.ftl" />
 
 <form class="ui form" action="/recommend/submit" method="get">
   <input type="hidden" name="token" value="${token!}" />
@@ -33,4 +33,4 @@ $(function() {
 </script>
 </@override>
 
-<@extends name="../base.ftl" />
+<@extends name="/base.ftl" />

@@ -1,5 +1,8 @@
 package com.hutter.master.mvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -28,7 +31,7 @@ public class OAuthController extends BaseController {
 	}
 	
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout() {
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		if (isAuthenticated()) {
 			getSubject().logout();
 		}

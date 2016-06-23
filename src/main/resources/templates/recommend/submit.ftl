@@ -1,5 +1,5 @@
 <@override name="body">
-<@extends name="recommend/snippets/steps.ftl" />
+<@extends name="/recommend/snippets/steps.ftl" />
 
 <div class="ui divided items">
   <div class="item">
@@ -19,4 +19,4 @@
 </div>
 </@override>
 
-<@extends name="../base.ftl" />
+<@extends name="/base.ftl" />

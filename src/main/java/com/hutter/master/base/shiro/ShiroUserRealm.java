@@ -34,7 +34,8 @@ public class ShiroUserRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		logger.info("为登录成功的用户：{}，添加角色和权限", principals.getPrimaryPrincipal());
+		String principal = (String)principals.getPrimaryPrincipal();
+		logger.info("为登录成功的用户：{}，添加角色和权限", principal);
 	    SimpleAuthorizationInfo authorization = new SimpleAuthorizationInfo();
 	    
 	    Set<String> roles = shiroUserAware.getRoles();
@@ -62,5 +63,5 @@ public class ShiroUserRealm extends AuthorizingRealm {
 		return new SimpleAuthenticationInfo(shiroUser.getUsername(), shiroUser.getPassword(),
 				ByteSource.Util.bytes(shiroUser.getSalt()), getName());
 	}
-
+	
 }

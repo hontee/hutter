@@ -1,5 +1,5 @@
 <@override name="body">
-<@extends name="recommend/snippets/steps.ftl" />
+<@extends name="/recommend/snippets/steps.ftl" />
 
 <#if exists??>
 <div class="ui error message">
@@ -29,4 +29,4 @@ $(function() {
 </script>
 </@override>
 
-<@extends name="../base.ftl" />
+<@extends name="/base.ftl" />

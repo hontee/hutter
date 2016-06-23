@@ -69,6 +69,19 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}, pageable);
 	}
+	
+	@Override
+	public Page<Product> findAll(Long uid, Pageable pageable) {
+		Preconditions.checkNotNull(uid, "user id is null.");
+		return productR.findAll(new Specification<Product>() {
+			
+			@Override
+			public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.equal(root.get("creator"), uid);
+				return query.where(predicate).getRestriction();
+			}
+		}, pageable);
+	}
 
 	@Override
 	public String hit(Long id) {

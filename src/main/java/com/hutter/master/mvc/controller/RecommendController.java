@@ -1,5 +1,6 @@
 package com.hutter.master.mvc.controller;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class RecommendController extends BaseController {
 	 * 开发者推荐：填写推荐网址
 	 * @return
 	 */
+	@RequiresRoles({"user", "admin"})
 	@RequestMapping(value = "", method=RequestMethod.GET)
 	public String recommend(Model model) {
 		addTitle(policy.getRecommend(), model);
@@ -54,6 +56,7 @@ public class RecommendController extends BaseController {
 	 * @return
 	 */
 	@Token(add = true)
+	@RequiresRoles({"user", "admin"})
 	@RequestMapping(value = "confirm", method=RequestMethod.GET)
 	public String confirm(@RequestParam String url, Model model) {
 		
@@ -77,6 +80,7 @@ public class RecommendController extends BaseController {
 	 * @throws BaseException 
 	 */
 	@Token(delete = true)
+	@RequiresRoles({"user", "admin"})
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
 	public String submit(@Validated ProductForm form, Model model, BindingResult bindingResult) {
 		logger.info("开发者推荐信息：{}", form.toJSONString());

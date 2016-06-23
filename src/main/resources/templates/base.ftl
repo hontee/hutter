@@ -19,7 +19,7 @@
   </@block>
 </head>
 
-<body>
+<body style="padding-top: 47px;">
 <#-- navbar block -->
 <@block name="navbar">
 <header class="ui top fixed menu" style="background:#f5f5f5;box-shadow:none;">
@@ -31,14 +31,14 @@
     </form>
   </div>
   <div class="right menu">
-    <a class="item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
     <#if oauth??>
+    <a class="item" href="/recommend"><i class="add icon"></i> 开发者推荐</a>
     <div id="oauth-dropdown" class="ui right dropdown item">
       <i class="dashboard icon"></i> ${oauth.title!}
       <i class="dropdown icon"></i>
       <div class="menu">
-        <a class="item"><i class="home icon"></i> 我的主页</a>
-        <a class="item"><i class="setting icon"></i> 个人设置</a>
+        <a class="item" href="/users/${oauth.name}"><i class="home icon"></i> 我的主页</a>
+        <a class="item" href="/users/${oauth.name}/settings"><i class="setting icon"></i> 个人设置</a>
         <a class="item" href="/logout"><i class="sign out icon"></i> 退出</a>
       </div>
     </div>
@@ -49,7 +49,7 @@
 </header>
 </@block>
 
-<div class="ui container" style="width: 800px; padding: 70px 0;">
+<div class="ui container" style="width: 800px; padding: 20px 0;">
   <#-- body block (main container) -->
   <@block name="body"></@block>
 </div>

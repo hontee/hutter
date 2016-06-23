@@ -28,6 +28,14 @@ public abstract class AuthorizingBase {
 	public Session getSession() {
 		return getSubject().getSession();
 	}
+	
+	/**
+	 * flush Session
+	 * @param user
+	 */
+	public void flushSession(User user) {
+		getSubject().getSession(true).setAttribute("oauth", user);
+	}
 
 	/**
 	 * CurrentUser

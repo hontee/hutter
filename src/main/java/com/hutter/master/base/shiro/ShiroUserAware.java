@@ -11,6 +11,8 @@ public interface ShiroUserAware {
 	
 	ShiroUser findUser(String username);
 	
+	Object getUser(String username);
+	
 	Set<String> getRoles();
 	
 	Set<String> getPermissions();
