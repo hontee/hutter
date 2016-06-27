@@ -1,4 +1,8 @@
 <#-- Login -->
+<@override name="meta">
+<title>登录 · Hutter</title>
+</@override>
+
 <@override name="navbar" />
 <@override name="main">
   <section class="ui medium container">

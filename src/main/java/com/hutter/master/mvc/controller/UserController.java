@@ -55,8 +55,6 @@ public class UserController extends BaseController {
 			userS.findOne(name);
 		}
 		model.addAttribute("userInfo", userInfo);
-		
-		addTitle(userInfo.getTitle() + " - Hutter.cn", model);
 		Page<Product> pages = prodcutS.findAll(userInfo.getId(), page.buildPageable());
 		addRecordsAndPager(pages, request, model);
 		return "users/dashbord";

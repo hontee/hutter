@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hutter.master.base.exceptions.BaseException;
-import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.PageForm;
 import com.hutter.master.mvc.base.BaseController;
@@ -29,9 +28,6 @@ public class HomeController extends BaseController {
 	
 	@Autowired
 	private ProductService productS;
-	
-	@Autowired
-	private TitlePolicy policy;
 
 	/**
 	 * 首页
@@ -51,7 +47,6 @@ public class HomeController extends BaseController {
 			pages= productS.findAll(q, page.buildPageable());
 		}
 		
-		addTitle(policy.getHome(), model);
 		addRecordsAndPager(pages, request, model);
 		return "home/index";
 	}

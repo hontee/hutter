@@ -10,15 +10,6 @@ import com.hutter.master.mvc.utils.Pager;
 public abstract class BaseController extends AssertBase {
 	
 	/**
-	 * 设置标题
-	 * @param title
-	 * @param model
-	 */
-	public void addTitle(String title, Model model) {
-		model.addAttribute("title", title);
-	}
-	
-	/**
 	 * 数据列表和分页
 	 * @param pages
 	 * @param urlTemplate

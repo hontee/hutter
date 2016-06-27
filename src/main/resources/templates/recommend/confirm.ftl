@@ -1,3 +1,8 @@
+<#-- Recommend -->
+<@override name="meta">
+<title>分享链接 · Hutter</title>
+</@override>
+
 <@override name="main">
 <section class="ui container">
   <@extends name="/recommend/snippets/steps.ftl" />

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hutter.master.base.client.SpiderClient;
 import com.hutter.master.base.client.SpiderInfo;
 import com.hutter.master.base.exceptions.BaseException;
-import com.hutter.master.base.properties.TitlePolicy;
 import com.hutter.master.data.domain.Product;
 import com.hutter.master.data.form.ProductForm;
 import com.hutter.master.mvc.annotation.Token;
@@ -36,9 +35,6 @@ public class RecommendController extends BaseController {
 	@Autowired
 	private SpiderClient client;
 	
-	@Autowired
-	private TitlePolicy policy;
-	
 	/**
 	 * 开发者推荐：填写推荐网址
 	 * @return
@@ -46,7 +42,6 @@ public class RecommendController extends BaseController {
 	@RequiresRoles({"user", "admin"})
 	@RequestMapping(value = "", method=RequestMethod.GET)
 	public String recommend(Model model) {
-		addTitle(policy.getRecommend(), model);
 		model.addAttribute("step", "1");
 		return "recommend/new";
 	}
@@ -69,7 +64,6 @@ public class RecommendController extends BaseController {
 		
 		SpiderInfo spider = client.fetch(url);
 		model.addAttribute("spider", spider);
-		addTitle(policy.getRecommend(), model);
 		model.addAttribute("step", "2");
 		return "recommend/confirm";
 	}
@@ -84,7 +78,6 @@ public class RecommendController extends BaseController {
 	@RequestMapping(value = "submit", method=RequestMethod.GET)
 	public String submit(@Validated ProductForm form, Model model, BindingResult bindingResult) {
 		logger.info("开发者推荐信息：{}", form.toJSONString());
-		addTitle(policy.getRecommend(), model);
 		checkAssert(bindingResult);
 		Product record = productS.addProduct(form);
 		model.addAttribute("record", record);

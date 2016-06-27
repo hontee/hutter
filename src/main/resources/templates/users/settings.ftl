@@ -1,4 +1,8 @@
 <#-- User Settings -->
+<@override name="meta">
+<title>用户设置 · Hutter</title>
+</@override>
+
 <@override name="main">
   <@extends name="/users/snippets/cover.ftl"/>
 
