@@ -427,3 +427,11 @@ th {
          Site Overrides
 *******************************/
 
+/*导航条固定时设置*/
+body {
+  padding-top: 48px!important;
+}
+/*页面背景色*/
+body.ui.bg {
+  background: #f9f9f9;
+}

@@ -1,22 +1,26 @@
-<@override name="body">
-<@extends name="/recommend/snippets/steps.ftl" />
+<@override name="main">
+<section class="ui container">
+  <@extends name="/recommend/snippets/steps.ftl" />
 
-<#if exists??>
-<div class="ui error message">
-  <p>您推荐的网址已经存在！</p>
-</div>
-</#if>
-
-<form class="ui form" action="/recommend/confirm" method="get">
-  <div class="field">
-    <label>链接地址</label>
-    <input type="url" name="url" value="${url!}" placeholder="以 http(s):// 开头的有效网址" autocomplete="off">
+  <#if exists??>
+  <div class="ui error message">
+    <p>分享的链接已经存在！</p>
   </div>
-  <button class="ui submit blue button" type="submit">我要推荐</button>
-</form>
+  </#if>
+
+  <div class="ui very padded segment">
+    <form class="ui form" action="/recommend/confirm" method="get">
+      <div class="field">
+        <label>链接地址</label>
+        <input type="url" name="url" value="${url!}" placeholder="以 http(s):// 开头的有效网址" autocomplete="off">
+      </div>
+      <button class="ui submit blue button" type="submit">分享链接</button>
+    </form>
+  </div>
+</section>
 </@override>
 
-<@override name="script">
+<@override name="scripts">
 <@super/>
 <script>
 $(function() {
@@ -29,4 +33,4 @@ $(function() {
 </script>
 </@override>
 
-<@extends name="/base.ftl" />
+<@extends name="/primary.ftl" />

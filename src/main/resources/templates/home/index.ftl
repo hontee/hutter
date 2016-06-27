@@ -1,5 +1,7 @@
-<@override name="body">
-<@extends name="/snippets/products.ftl"/>
+<#-- Home -->
+<@override name="main">
+  <div class="ui hidden divider"></div>
+  <@extends name="/snippets/products.ftl"/>
 </@override>
 
-<@extends name="/base.ftl" />
+<@extends name="/primary.ftl" />

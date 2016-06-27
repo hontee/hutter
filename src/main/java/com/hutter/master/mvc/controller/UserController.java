@@ -35,7 +35,8 @@ public class UserController extends BaseController {
 	
 	@RequiresRoles({"user", "admin"})
 	@RequestMapping(value = "{name}/settings", method = RequestMethod.GET)
-	public String settings(@PathVariable String name) {
+	public String settings(@PathVariable String name, Model model) {
+		model.addAttribute("userInfo", getCurrentUser());
 		return "users/settings";
 	}
 	

@@ -18,7 +18,7 @@
 /* All Sizes */
 .ui.container {
   display: block;
-  max-width: 100% !important;
+  max-width: 980px !important;
 }
 
 /* Mobile */
@@ -101,7 +101,7 @@
 
 /* Text Container */
 .ui.text.container {
-  font-family: 'Microsoft Yahei', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   max-width: 700px !important;
   line-height: 1.5;
 }
@@ -146,3 +146,7 @@
          Site Overrides
 *******************************/
 
+/*中等容器大小*/
+.ui.medium.container {
+  max-width: 420px!important;
+}
