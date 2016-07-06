@@ -59,6 +59,7 @@ public class RecommendController extends BaseController {
 		if (productS.checkIsExists(url)) {
 			model.addAttribute("exists", true);
 			model.addAttribute("url", url);
+			model.addAttribute("step", "1");
 			return "recommend/new";
 		}
 		
