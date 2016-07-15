@@ -1,0 +1,85 @@
+{
+  "groups": [{
+    "name": "druid",
+    "type": "com.hutter.front.site.properties.DruidProperties",
+    "sourceType": "com.hutter.front.site.properties.DruidProperties"
+  }],
+  "properties": [
+    {
+      "name": "druid.filters",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.initial-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.max-open-prepared-statements",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.max-wait",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.min-evictable-idle-time-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.password",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.pool-prepared-statements",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.test-while-idle",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.time-between-eviction-runs-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.url",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    },
+    {
+      "name": "druid.username",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.site.properties.DruidProperties"
+    }
+  ],
+  "hints": []
+}
