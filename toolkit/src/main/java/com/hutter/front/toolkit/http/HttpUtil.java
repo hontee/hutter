@@ -62,9 +62,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hutter.front.toolkit.Constants;
+
 public class HttpUtil {
-	
-	final static String Charset = "UTF-8";
 	
 	/**
 	 * Send a get request
@@ -152,8 +152,8 @@ public class HttpUtil {
 					body += "&";
 				}
 				String value = params.get(param);
-				body += URLEncoder.encode(param, Charset) + "=";
-				body += URLEncoder.encode(value, Charset);
+				body += URLEncoder.encode(param, Constants.CHARSET) + "=";
+				body += URLEncoder.encode(value, Constants.CHARSET);
 			}
 		}
 
@@ -227,8 +227,8 @@ public class HttpUtil {
 					fullUrl += '&';
 				}
 				String value = params.get(param);
-				fullUrl += URLEncoder.encode(param, Charset) + '=';
-				fullUrl += URLEncoder.encode(value, Charset);
+				fullUrl += URLEncoder.encode(param, Constants.CHARSET) + '=';
+				fullUrl += URLEncoder.encode(value, Constants.CHARSET);
 			}
 		}
 		
@@ -293,8 +293,8 @@ public class HttpUtil {
 				}
 			}
 			
-			params.put(URLDecoder.decode(param, Charset), 
-				URLDecoder.decode(value, Charset));
+			params.put(URLDecoder.decode(param, Constants.CHARSET), 
+				URLDecoder.decode(value, Constants.CHARSET));
 		}
 		
 		return params;
