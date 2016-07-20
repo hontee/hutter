@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hutter.front</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>hutter</name>
+	<name>${project.artifactId}</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -17,7 +17,6 @@
 	
 	<modules>
 		<module>toolkit</module>
-		<module>shiro</module>
 		<module>core</module>
 		<module>site</module>
 	</modules>

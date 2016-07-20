@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
-import com.hutter.front.core.service.impl.ShiroUserAwareImpl;
-import com.hutter.front.shiro.ShiroCredentialsMatcher;
-import com.hutter.front.shiro.ShiroUserAware;
-import com.hutter.front.shiro.ShiroUserRealm;
+import com.hutter.front.core.security.ShiroCredentialsMatcher;
+import com.hutter.front.core.security.ShiroUserRealm;
+import com.hutter.front.core.service.UserService;
+import com.hutter.front.core.service.impl.UserServiceImpl;
 
 @Configuration
 public class ShiroAutoConfiguration {
@@ -34,15 +34,17 @@ public class ShiroAutoConfiguration {
 		return new ShiroCredentialsMatcher();
 	}
 	
-	@Bean
-	public ShiroUserAware shiroUserAware() {
-		return new ShiroUserAwareImpl();
+	/**
+	 * 须指定Bean的名称，和{@link UserServiceImpl}保持一致，防止出现多个同类型的Bean。
+	 */
+	@Bean(name = "userServiceImpl")
+	public UserService userServiceImpl() {
+		return new UserServiceImpl();
 	}
 	
 	@Bean
 	public ShiroUserRealm userRealm() {
-		ShiroUserRealm realm = new ShiroUserRealm();
-		realm.setShiroUserAware(shiroUserAware());
+		ShiroUserRealm realm = new ShiroUserRealm(userServiceImpl());
 		realm.setCredentialsMatcher(credentialsMatcher());
 		return realm;
 	}

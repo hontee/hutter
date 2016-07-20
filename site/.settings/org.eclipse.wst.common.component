@@ -5,13 +5,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
-        <dependent-module archiveName="core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/com.hutter.front.core/com.hutter.front.core">
+        <dependent-module archiveName="core-0.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/core/core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="shiro-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/com.hutter.front.shiro/com.hutter.front.shiro">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="toolkit-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/com.hutter.front.toolkit/com.hutter.front.toolkit">
+        <dependent-module archiveName="toolkit-0.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/toolkit/toolkit">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="site"/>

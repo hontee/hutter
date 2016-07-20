@@ -1,10 +1,32 @@
 {
-  "groups": [{
-    "name": "spider",
-    "type": "com.hutter.front.toolkit.spider.SpiderProperties",
-    "sourceType": "com.hutter.front.toolkit.spider.SpiderProperties"
-  }],
+  "groups": [
+    {
+      "name": "aliyun.sdk.oss",
+      "type": "com.hutter.front.toolkit.sdk.oss.AliyunOSSProperties",
+      "sourceType": "com.hutter.front.toolkit.sdk.oss.AliyunOSSProperties"
+    },
+    {
+      "name": "spider",
+      "type": "com.hutter.front.toolkit.spider.SpiderProperties",
+      "sourceType": "com.hutter.front.toolkit.spider.SpiderProperties"
+    }
+  ],
   "properties": [
+    {
+      "name": "aliyun.sdk.oss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.toolkit.sdk.oss.AliyunOSSProperties"
+    },
+    {
+      "name": "aliyun.sdk.oss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.toolkit.sdk.oss.AliyunOSSProperties"
+    },
+    {
+      "name": "aliyun.sdk.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.hutter.front.toolkit.sdk.oss.AliyunOSSProperties"
+    },
     {
       "name": "spider.follow-redirects",
       "type": "java.lang.Boolean",

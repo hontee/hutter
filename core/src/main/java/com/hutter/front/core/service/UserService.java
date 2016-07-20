@@ -1,5 +1,7 @@
 package com.hutter.front.core.service;
 
+import java.util.Set;
+
 import com.hutter.front.core.domain.User;
 import com.hutter.front.core.form.SettingsForm;
 import com.hutter.front.core.form.UserForm;
@@ -43,5 +45,9 @@ public interface UserService {
 	 * @throws BaseException
 	 */
 	User settings(Long id, SettingsForm form);
+	
+	Set<String> getRoles();
+	
+	Set<String> getPermissions();
 	
 }

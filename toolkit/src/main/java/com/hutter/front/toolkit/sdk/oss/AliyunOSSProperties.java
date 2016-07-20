@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class AliyunOSSProperties {
 
 	private String endpoint;
-	
 	private String accessKeyId;
-	
 	private String accessKeySecret;
 
 	public String getEndpoint() {

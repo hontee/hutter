@@ -1,5 +1,8 @@
 package com.hutter.front.core.service.impl;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
@@ -15,10 +18,10 @@ import com.hutter.front.core.domain.User;
 import com.hutter.front.core.form.SettingsForm;
 import com.hutter.front.core.form.UserForm;
 import com.hutter.front.core.repository.UserRepository;
+import com.hutter.front.core.security.EncryptHelper;
 import com.hutter.front.core.service.UserService;
-import com.hutter.front.shiro.EncryptHelper;
 
-@Service
+@Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 	
 	Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -97,6 +100,21 @@ public class UserServiceImpl implements UserService {
 		record.setEmail(form.getEmail());
 		record.setDescription(form.getDescription());
 		return userR.save(record);
+	}
+
+	@Override
+	public Set<String> getRoles() {
+		Set<String> roles = new HashSet<>();
+		roles.add("user");
+		roles.add("admin");
+		return roles;
+	}
+
+	@Override
+	public Set<String> getPermissions() {
+		Set<String> perms = new HashSet<>();
+		perms.add("all");
+		return perms;
 	}
 
 }
